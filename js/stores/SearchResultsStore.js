@@ -99,6 +99,9 @@ AppDispatcher.register(function(action) {
         SearchResultsStore.emitChange();
 
         search(searchQuery).then(function(response) {
+          if(typeof(response) === "string") {
+            response = JSON.parse(response);
+          }
           if (response &&
             response.PrimaryQueryResult &&
             response.PrimaryQueryResult.RelevantResults &&
